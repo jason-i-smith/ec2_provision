@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: ec2_provision
   author: Jason I Smith
   description: AWS deployment demo
   company: Red Hat
