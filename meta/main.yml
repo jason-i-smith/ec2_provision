@@ -19,8 +19,6 @@ galaxy_info:
 
   min_ansible_version: 2.9
 
-collections:
-  - amazon.aws
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
@@ -61,6 +59,8 @@ collections:
     # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
     #       Maximum 20 tags per role.
 
+collections:
+  - amazon.aws
 dependencies: []
   # List your role dependencies here, one per line. Be sure to remove the '[]' above,
   # if you add dependencies to this list.
