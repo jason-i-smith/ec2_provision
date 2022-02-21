@@ -1,0 +1,19 @@
+---
+
+- include_tasks: teardown.yml
+  when: teardown|bool
+
+- name: NOTICE
+  debug:
+    msg: "AWS instance teardown is complete.  Skipping provisioning tasks."
+  when: teardown|bool
+  
+- name: AWS Build Out
+  block:
+
+    - name: AWS - Prerequisites
+      include_tasks: aws_prereq.yml
+
+    - name: AWS - Provision EC2 Instance
+      include_tasks: aws_provision.yml
+  when: not teardown

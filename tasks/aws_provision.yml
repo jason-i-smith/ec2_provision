@@ -1,0 +1,34 @@
+---
+- name: Provision {{ ec2_name_prefix }} instance
+  amazon.aws.ec2_instance:
+    key_name: "{{ ec2_name_prefix }}-key"
+    security_group: "{{ ec2_security_group_id }}"
+    vpc_subnet_id: "{{ ec2_vpc_subnet_id }}"
+    region: "{{ ec2_region }}"
+    network:
+      assign_public_ip: true
+    instance_type: "{{ ec2_instance_type }}"
+    image_id: "{{ ami_id }}"
+    wait: "{{ ec2_wait }}"
+    state: "{{ ec2_state }}"
+    exact_count: "{{ ec2_instance_count }}"
+    tags:
+      Name: "{{ ec2_name_prefix }}{{ ec2_instance_count }}"
+      Instance: "{{ ec2_name_prefix }}"
+  register: create_ec2
+
+- name: DEBUG - create_ec2
+  debug:
+    var: create_ec2
+    verbosity: 2
+
+- name: Write 'create_ec2.json' variable output to /tmp
+  copy:
+    content: "{{ create_ec2 | to_nice_json }}"
+    dest: /tmp/create_ec2.json
+    mode: 0644
+    backup: yes
+
+- name: SSH Instructions
+  debug:
+    msg: "ssh -i {{ ec2_privatekey_dir }}{{ ec2_privatekey_file }} ec2-user@{{ create_ec2['instances'][0]['network_interfaces'][0]['association']['public_dns_name'] }}"
