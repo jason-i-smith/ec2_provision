@@ -85,7 +85,7 @@
     var: igw
     verbosity: 2
 
-- name: Add public subnet route table for {{ ec2_name_prefix}}-vpc
+- name: Add public subnet route table for {{ ec2_name_prefix }}-vpc
   amazon.aws.ec2_vpc_route_table:
     region: "{{ ec2_region }}"
     vpc_id: "{{ create_vpc.vpc.id }}"
@@ -121,13 +121,7 @@
     name: "{{ ec2_name_prefix }}-key"
     region: "{{ ec2_region }}"
   register: create_key
-
-- name: Save private key
-  copy:
-    content: "{{ create_key.key.private_key }}"
-    dest: "{{ ec2_privatekey_dir }}{{ ec2_privatekey_file }}"
-    mode: '0400'
-  when: create_key.changed
+  notify: Save private key
 
 - name: Summary
   debug:

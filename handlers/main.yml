@@ -1,0 +1,8 @@
+---
+- name: Save private key
+  copy:
+    content: "{{ create_key.key.private_key }}"
+    dest: "{{ ec2_privatekey_dir }}{{ ec2_privatekey_file }}"
+    mode: '0400'
+  when: create_key.changed
+...
