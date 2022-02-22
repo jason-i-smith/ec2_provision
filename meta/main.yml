@@ -1,6 +1,6 @@
 galaxy_info:
   role_name: ec2_provision
-  namespace: json
+  namespace: jason_i_smith
   author: Jason I Smith
   description: AWS deployment demo
   company: Red Hat

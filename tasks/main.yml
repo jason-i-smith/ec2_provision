@@ -11,7 +11,7 @@
   block:
     - name: Starting buildout...
       debug:
-        msg: Create VPC, configure networking, and provision instance.
+        msg: "Create VPC, configure networking, and provision instance."
     - name: AWS - Prerequisites
       include_tasks: aws_prereq.yml
     - name: AWS - Provision EC2 Instance
