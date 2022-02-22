@@ -16,4 +16,4 @@
       include_tasks: aws_prereq.yml
     - name: AWS - Provision EC2 Instance
       include_tasks: aws_provision.yml
-  when: not teardown
+  when: teardown == 'false'
