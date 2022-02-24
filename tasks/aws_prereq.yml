@@ -121,6 +121,7 @@
     name: "{{ ec2_name_prefix }}-key"
     key_material: "{{ my_pub_key }}"
     region: "{{ ec2_region }}"
+    force: true
   register: create_key
 
 - name: Summary
