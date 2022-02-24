@@ -1,7 +1,7 @@
 ---
 - name: Provision {{ ec2_name_prefix }} instance
   amazon.aws.ec2_instance:
-    key_name: "{{ ec2_name_prefix }}-key"
+    key_name: "{{ my_pub_key_name }}"
     security_group: "{{ ec2_security_group_id }}"
     vpc_subnet_id: "{{ ec2_vpc_subnet_id }}"
     region: "{{ ec2_region }}"
@@ -31,4 +31,4 @@
 
 - name: SSH Instructions
   debug:
-    msg: "ssh -i {{ ec2_privatekey_dir }}{{ ec2_privatekey_file }} ec2-user@{{ create_ec2['instances'][0]['network_interfaces'][0]['association']['public_dns_name'] }}"
+    msg: "ssh ec2-user@{{ create_ec2['instances'][0]['network_interfaces'][0]['association']['public_dns_name'] }}"

@@ -17,6 +17,7 @@
     region: "{{ ec2_region }}"
     state: absent
     instance_ids: "{{ all_running_nodes.instances | map(attribute='instance_id') | list }}"
+    instance_type: "{{ ec2_instance_type }}"
   register: terminate_result
   when: all_running_nodes.instances
 
