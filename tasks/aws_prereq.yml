@@ -119,16 +119,16 @@
 - name: Create ssh key pair for instance {{ ec2_name_prefix }}
   amazon.aws.ec2_key:
     name: "{{ ec2_name_prefix }}-key"
+    key_material: "{{ my_pub_key }}"
     region: "{{ ec2_region }}"
   register: create_key
-  notify: Save private key
 
 - name: Summary
   debug:
     msg:
       - "ec2_name_prefix: {{ ec2_name_prefix }}"
       - "ec2_vpc_id: {{ ec2_vpc_id }}"
-      - "{{ ec2_name_prefix }}-key - Private key: {{ ec2_privatekey_dir }}{{ ec2_privatekey_file }}"
+      - "{{ ec2_name_prefix }}-key - {{ my_pub_key }}"
       - "ec2_security_group: {{ ec2_security_group }}"
       - "ec2_security_group_id: {{ ec2_security_group_id }}"
       - "ec2_vpc_subnet_id: {{ ec2_vpc_subnet_id }}"

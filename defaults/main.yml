@@ -16,6 +16,8 @@ teardown: false
 ec2_subnet: 172.16.0.0/16
 
 # Private Key
+# Enter you public key:
+my_pub_key: ""
 ec2_privatekey_dir: "~/.ssh/"
 ec2_privatekey_file: "{{ ec2_name_prefix}}-key.pem"
 
